@@ -14,3 +14,7 @@ tool
   .then(function() {
     console.log('上传git完成');
   });
+
+
+
+console.log(1);
