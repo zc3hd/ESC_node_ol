@@ -1,16 +1,17 @@
-# 一键上传数据库
+# 一键上传
 
 * 该例子是从node-011拿过来的，
-* 状态：前端gulp+后台express。已完成开发。
-
-* 本地上传数据库需要做这几件事：导出、打包、上传。可以在package.json中弄：
+* 状态：前端gulp+后台express。已开发完成。
+* 本来是想完成一键上传db，后面发现只要不是启动server类的，都可以设置为一键启动的方式。
+* 于是就有了该项目一键项目的配置。（以后还有更多的优化）目录结构：
 ```
-  "scripts": {
-    "ol": "node ./db_bak/db_bak.js"
-  },
+cmd/
+ db_to_ol/  【里面写一键上传db的命令，且上传的包暂时都在该文件夹下面。】
+ git_to_ol/  【上传GitHub的命令】
+ tool.js 【所有命令行工具的构造函数，_cmd函数promise封装】
 ```
 
-* 在conf.js添加服务器配置：
+* conf.js 在外面，全局参数配置，就单独放在外面了。
 ```
 module.exports = {
   // 数据库名称
@@ -34,36 +35,16 @@ module.exports = {
 }
 ```
 
-* db_bak.js
+### 一键上传db
+
+* 本地上传数据库需要做这几件事：导出、打包、上传。可以在package.json中弄：
+
+### 一键上传GitHub
+
+* 这是由前面想到的，只要不是启动服务的，手动挡的，都可以配置命令进行一键启动。
 ```
-  _cmd: function(shell) {
-    return new Promise(function(resolve, reject) {
-      process.exec(shell, function(error, stdout, stderr) {
-        if (error !== null) {
-          console.log('exec error: ' + error);
-        }
-        console.log(stdout, stderr)
-        resolve();
-      });
-    });
+  "scripts": {
+    "esc_db": "node ./cmd/db_to_ol/index.js",
+    "git": "node ./cmd/git_to_ol/index.js"
   },
-
-// 导出
-me._cmd(`mongodump -h 127.0.0.1:27017 -d ${conf.db} -o ./db_bak`)
-  .then(function() {
-    // 打包
-    return me._cmd(`tar zcvf ./db_bak/${conf.db}.tar.gz ./db_bak/${conf.db}`)
-  })
-  .then(function() {
-    // 删除
-    return me._cmd(`rm -r ./db_bak/${conf.db}`)
-  })
-  .then(function() {
-    // 上传
-    return me._cmd(`scp -P ${conf.login_port} ./db_bak/${conf.db}.tar.gz ${conf.user}@${conf.ip}:/home/${conf.user}/${conf.db_dir_ol}/`)
-  })
-  .then(function() {
-    console.log('上传完成');
-  });
 ```
-
