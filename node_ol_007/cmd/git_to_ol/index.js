@@ -4,7 +4,7 @@ var me = new fn();
 
 me._cmd('git add ../')
   .then(function() {
-    return me._cmd('git commit -m "xx"')
+    return me._cmd(`git commit -m "info:${Math.random()}"`)
   })
   .then(function() {
     return me._cmd('git push -u origin master')
