@@ -6,8 +6,17 @@
 ```
 npm i pm2 -g 【安装】
 pm2 start app.js  【开启一个服务】
+pm2 start app.js --name="api" 【命名为api】
+pm2 restart app.js
+
+
+pm2 stop app_name|app_id  【停止】
+pm2 stop all
+
 pm2 list  【查看所有开启的服务】
 pm2 show app_name 【查看详细信息】
+
+
 pm2 logs 【查看实时日志】  
 
 Ctrl+c退出 pm2模式
