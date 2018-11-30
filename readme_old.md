@@ -83,69 +83,6 @@ HostbasedAuthentication no
 
 
 
-## 11.搭建nodejs的生产环境
-
-* 特别注意，阿里云的后台的安全组得设置，服务器上的防火墙和iptables都得开启。
-
-* 更新
-
->$ sudo apt-get update
-
-
-
-* 安装
-
->$ sudo apt-get install vim openssl build-essential libssl-dev wget curl git 
-
-* 安装nvm https://github.com/creationix/nvm
-
->$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
-
-
-
-* 我发现按照上面的不行，按照下面的得
-
->$ git clone git://github.com/creationix/nvm.git ~/.nvm
-
-* 这句话就是载入nvm的使用环境
-
->$ source ~/.nvm/nvm.sh
-
-
-* 然后再
-
->$ nvm install v6.9.5
-
->$ nvm use v6.9.5
-
->$ nvm alias default v6.9.5
-
->$ node -v
-
->$ npm  --registry=https://registry.npm.taobao.org install -g npm
-
->$ npm  --registry=https://registry.npm.taobao.org install -g nrm
-
->$ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
->$ npm i pm2 -g
-
-
-* 试着来个8081
-
->$ vi app.js(8081)
-
->$ node app.js 当前用户没有权限让服务跑在80端口
-
->$ sudo vi /etc/iptables.up.rules
-
-```
-# http https 8081
--A INPUT -p tcp --dport 8081 -j ACCEPT
-```
-
->$ sudo iptables-restore < /etc/iptables.up.rules
-
 
 
 
@@ -171,102 +108,6 @@ HostbasedAuthentication no
 
 >$ pm2 show app
 
-
-
-### 12.2 nginx
-
-* 停止apache2
-
->$ sudo service apache2 stop
-
->$ sudo service apache stop
-
-* 删除apache2
-
->$ update-rc.d -f apache2 remove
-
->$ sudo apt-get remove apache2
-
-
-* 更新包列表
-
->$ sudo apt-get update
-
->$ sudo apt-get install nginx
-
->$ cd /etc/nginx/
-
->$ ls
-
->$ cd conf.d
-
->$ ls
-
-【注意里面必须有分号的】
->$ sudo vi arminc-cn-8081.conf
-
-```
-upstream arminc {
-    server 127.0.0.1:8081;
-}
-server {
-    listen 80;
-    server_name 公网IP;
-
-    location / {
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-Nginx-Proxy true;
-
-        proxy_pass http://arminc;
-        proxy_redirect off;
-    }
-}
-```
-
->$ cd ..
-
->$ ls
-
-* 查看文件配置,看有没有这个include
-
->$ sudo vi nginx.conf
-
-```
-include /etc/nginx/conf.d/*.conf;
-```
-
-* 测试配置是否有错
-
->$ sudo nginx -t
-
-* 重启--到这默认80端口可以访问了
-
->$ sudo nginx -s reload
-
-
-
-
-### 12.3 前端页面的nginx版本信息修改
-
-* 前端页面中返回的请求中响应的--header里面的server里可以看到nginx的版本信息
-
->$ cd /etc/nginx/
-
->$ sudo vi nginx.conf
-
-```
-# Basic Settings
-
-server_tokens off;
-```
-
-* 重启
-
->$ sudo nginx -s reload
-
->$ sudo service nginx reload
 
 
 
@@ -537,6 +378,9 @@ server_name:把刚才在DNS写的域名写到这
 >$ source ~/.nvm/nvm.sh
 
 >$ pm2 ls
+
+
+
 
 
 

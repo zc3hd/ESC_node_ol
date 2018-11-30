@@ -43,7 +43,7 @@ cd /etc/nginx/conf.d
 sudo vi www-8081.conf
 
 ------------------------------------
-【www只是个名字,不是配置项】
+【www只是个名字,不是配置项】下面可以写多个服务，然后www.armincc.com访问就能找到www下面的提供的服务，这就是反向代理。
 upstream www {
     server 127.0.0.1:8081;
 }
