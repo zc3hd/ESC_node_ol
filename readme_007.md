@@ -53,7 +53,7 @@ show dbs
 
 * **2.通过node 执行shell命令**
 ```
-详见node_ol_007:
+详见demo_001:
 
 var process = require('child_process');
 process.exec('shutdown -h now',function (error, stdout, stderr) {

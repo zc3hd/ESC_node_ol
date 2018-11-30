@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.3s ease-in;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Microsoft Yahei';
+  border: 0;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  background-color: #345;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 40px;
+  padding-bottom: 100px;
+}
+
+.app>.add {
+  width: 100px;
+  height: 30px;
+  background-color: blue;
+  color: #fff;
+  font-weight: 800;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+}
+
+.app>.list {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid blue;
+  overflow-y: auto;
+}
+
+.app>.list>.item {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  border-bottom: 1px solid blue;
+}
+
+.app>.list>.item>span {
+  display: block;
+  float: left;
+  width: 150px;
+  height: 100%;
+  color: #fff;
+  font-weight: 800;
+  text-align: center;
+  box-sizing: border-box;
+  border-right: 1px solid blue;
+}
+
+.app>.list>.item>span.edit{
+	cursor: pointer;
+	width: 80px;
+	margin-left: 5px;
+	background-color: green;
+}
+.app>.list>.item>span.del{
+	cursor: pointer;
+	width: 80px;
+	margin-left: 5px;
+	background-color: red;
+}
+
+
+
+.app>.count {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+
+  background-color: #123;
+  color: #fff;
+  font-size: 60px;
+  font-weight: 800;
+  
+  text-align: center;
+}

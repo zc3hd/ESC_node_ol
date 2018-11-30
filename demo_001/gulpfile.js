@@ -108,6 +108,7 @@ gulp.task('serve', function() {
     //这个是browserSync对http://localhost:3000实现的代理端口
     port: conf.dev_port
   });
+  
 
   // 监听 html
   gulp.watch(path.join(opts.one, '*.html'), ['html']);
