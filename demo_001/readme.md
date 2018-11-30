@@ -37,14 +37,18 @@ module.exports = {
 
 ### 1.一键上传db
 
-* 本地上传数据库需要做这几件事：导出、打包、上传。可以在package.json中弄：
+* 本地上传数据库需要做这几件事：导出、打包、上传。
+* 在package.json的目录下，用相对路径打包时，(也就是按照原来想实现scripts命令配置实现)，会把写的相对路径`./cmd/db_to_ol/test`整个路径都进行打包，这个是避免不了的。
+* 配置的这个：`"esc_db": "node ./cmd/db_to_ol/index.js",`实现不了。
+* 所以目前只能用文件内部用相对路径，且只在`db_to_ol`的文件下执行命令。
+* 只要是`tar`这种压缩、解压的事情只能这样。
 
 ### 2.一键上传GitHub
 
 * 这是由前面想到的，只要不是启动服务的，手动挡的，都可以配置命令进行一键启动。
+* 这个不涉及到打包解压，可以用绝对路径。
 ```
   "scripts": {
-    "esc_db": "node ./cmd/db_to_ol/index.js",
     "git": "node ./cmd/git_to_ol/index.js"
   },
 ```
