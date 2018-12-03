@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./api_server/app.js",
-    "esc_db": "node ./cmd/db_to_ol/index.js",
-    "git": "node ./cmd/git_to_ol/index.js"
+    "esc_db": "set NODE_ENV=esc_db&&node ./cmd.js",
+    "git": "set NODE_ENV=git&&node ./cmd.js"
   },
   "keywords": [],
   "author": "",

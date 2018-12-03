@@ -6,9 +6,8 @@
 ```
 【进入这个配置文件】
 sudo vi /etc/ssh/sshd_config
-```
 
-```
+----------------------------------------------------
 【修改端口】
 Port 38888
 
@@ -16,7 +15,7 @@ Port 38888
 PasswordAuthentication yes 【在这个下面加】
 AllowUsers cc
 
-----------------------
+**************************************
 # 允许root登录:不允许【没必要】
 PermitRootLogin no
 
@@ -25,13 +24,9 @@ PasswordAuthentication no
 
 # 不允许空密码登录
 PermitEmptyPasswords no
-```
+----------------------------------------------------
+【ESC】【ctrl+:】【wq!】
 
-```
-vi的关闭保存：【ESC】【ctrl+:】【wq!】
-```
-
-```
 【重启】
 sudo service ssh restart
 ```

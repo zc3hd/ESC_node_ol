@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./api_server/app.js"
+    "watch": "node ./index.js"
   },
   "keywords": [],
   "author": "",
