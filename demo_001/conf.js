@@ -17,5 +17,5 @@ module.exports = {
   // 公网IP
   ip: "47.94.202.107",
   // 线上的数据库上传的文件夹
-  db_dir_ol: 'db_from_out'
+  db_dir_ol: 'db_task/db_from_out'
 }

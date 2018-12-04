@@ -25,7 +25,7 @@ if (process.env.NODE_ENV == 'esc_db') {
     .then(function() {
       console.log('删除文件夹完成');
       // 上传
-      return tool._cmd(`scp -P ${conf.login_port} ${_path}${conf.db}.tar.gz ${conf.user}@${conf.ip}:/home/${conf.user}/${conf.db_dir_ol}/`)
+      return tool._cmd(`scp -P ${conf.login_port} ${_path}${conf.db}.tar.gz ${conf.user}@${conf.ip}:/home/${conf.user}/${conf.db_to_olDir}/`)
     })
     .then(function() {
       console.log('上传完成');
