@@ -16,6 +16,7 @@ pm2 show app_name 【查看详细信息】
 
 
 pm2 logs 【查看实时日志】  
+pm2 log <someName>
 
 Ctrl+c退出 pm2模式
 ```

@@ -65,7 +65,7 @@ server {
 }
 
 ---------------------------------------
-upstream www {
+upstream server {
     server 127.0.0.1:8081;
 }
 server {
@@ -78,7 +78,7 @@ server {
         proxy_set_header Host $http_host;
         proxy_set_header X-Nginx-Proxy true;
 
-        proxy_pass http://www;
+        proxy_pass http://server;
         proxy_redirect off;
     }
 }
